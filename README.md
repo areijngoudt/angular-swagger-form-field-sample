@@ -1,9 +1,9 @@
-# angular2-swagger-form-field-sample
-Angular 2 (and above) sample project which shows how to use the [swagger-ts-generator](https://www.npmjs.com/package/swagger-ts-generator) and 
-[angular2-swagger-form-field modules](https://github.com/areijngoudt/angular2-swagger-form-field). 
+# angular-swagger-form-field-sample
+Angular (2 and above) sample project which shows how to use the [swagger-ts-generator](https://www.npmjs.com/package/swagger-ts-generator) and 
+[angular-swagger-form-field](https://www.npmjs.com/package/angular-swagger-form-field) packages.
 
 It implements functionality to use the generated classes for building form fields with validation. 
-See [sample](https://areijngoudt.github.io/angular2-swagger-form-field-sample/home) for a running sample of this repo.
+See [sample](https://areijngoudt.github.io/angular-swagger-form-field-sample/home) for a running sample of this repo.
 
 # Samples
 
@@ -23,5 +23,5 @@ Notice that the view `model-driven.component.html` is less verbose than that of 
 In the sample `src/app/components/generated-model-driven`a reactive form is implemented with form groups from the generated classes. 
 The view is simular to that of the model driven component.
 
-Notice that the component `generated-model-driven.component.ts` does not conain the form groups and validation rules. 
+Notice that the component `generated-model-driven.component.ts` does not contain the form groups and validation rules. 
 These are all generated using the [swagger-ts-generator](https://www.npmjs.com/package/swagger-ts-generator).

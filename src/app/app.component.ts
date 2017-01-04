@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
-import { ValidationMessages } from 'angular2-swagger-form-field/components';
+import { ValidationMessages } from 'angular-swagger-form-field/components';
 
 import { AppConfig } from './app.config';
 

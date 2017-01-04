@@ -6,7 +6,7 @@ import { HttpModule, Http } from '@angular/http';
 import { NotificationsService, SimpleNotificationsModule } from 'angular2-notifications/components';
 import { TranslateModule, TranslateService, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
-import { SwaggerFormFieldModule } from 'angular2-swagger-form-field/components';
+import { SwaggerFormFieldModule } from 'angular-swagger-form-field/components';
 
 //import 'moment';
 //import 'moment-nl';
