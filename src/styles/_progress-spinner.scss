@@ -1,0 +1,18 @@
+﻿@import "_vars";
+
+/* progress spinner */
+.fast-spin {
+    font-size: 20px;
+    color: $blockchain-blue;
+    -webkit-animation: fa-spin .8s infinite linear;
+    animation: fa-spin .8s infinite linear;
+}
+
+.save-button-container {
+    min-width: 100px;
+    min-height: 34px;
+
+    .progress-spinner-save {
+        margin-top: 16px;
+    }
+}

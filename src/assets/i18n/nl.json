@@ -1,0 +1,18 @@
+{
+  "type": "-------ENUM-TYPE-------",
+  "cat": "kat",
+  "dog": "hond",
+  "bird": "vogel",
+  "whale": "walvis",
+  "gender": "-------ENUM-TYPE-------",
+  "unknown": "unknown",
+  "male": "male",
+  "female": "female",
+  "hairColor": "-------ENUM-TYPE-------",
+  "red": "red",
+  "blond": "blond",
+  "brown": "brown",
+  "black": "black",
+  "white": "white",
+  "gray": "gray"
+}

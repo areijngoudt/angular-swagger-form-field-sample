@@ -1,0 +1,6 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    // Whether the proxy server certificate should be verified against the list of supplied CAs.
+    "http.proxyStrictSSL": true,
+    "typescript.tsdk": "./node_modules/typescript/lib"
+}

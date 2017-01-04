@@ -1,0 +1,12 @@
+Error encountered resolving symbol values statically. 
+Calling function 'makeDecorator', function calls are not supported. 
+Consider replacing the function or lambda with a reference to an exported function, 
+resolving symbol Injectable in /Users/adreijngoudt/tfs/Proeftuin/MScc.ApplySwaggerTSGeneratorNg2/lib/angular2-swagger-form-field/node_modules/@angular/core/src/di/metadata.d.ts, 
+resolving symbol OpaqueToken in /Users/adreijngoudt/tfs/Proeftuin/MScc.ApplySwaggerTSGeneratorNg2/lib/angular2-swagger-form-field/node_modules/@angular/core/src/di/opaque_token.d.ts, 
+resolving symbol OpaqueToken in /Users/adreijngoudt/tfs/Proeftuin/MScc.ApplySwaggerTSGeneratorNg2/lib/angular2-swagger-form-field/node_modules/@angular/core/src/di/opaque_token.d.ts
+
+Error encountered resolving symbol values statically. 
+Calling function 'makeDecorator', function calls are not supported. 
+Consider replacing the function or lambda with a reference to an exported function, 
+resolving symbol Injectable in @angular/core/src/di/metadata.d.ts, 
+resolving symbol OpaqueToken in @angular/core/src/di/opaque_token.d.ts, 

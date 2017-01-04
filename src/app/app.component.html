@@ -1,0 +1,20 @@
+<div class="navbar-container">
+    <nav class="navbar navbar-light">
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['home']">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['template-driven']">Template driven</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['model-driven']">Model driven</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['generated-model-driven']">Generated model driven</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<router-outlet></router-outlet>

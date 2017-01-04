@@ -1,0 +1,101 @@
+<div class="row">
+    <form class="col-sm-9 form" role="form" [formGroup]="form" (ngSubmit)="validateForm(form)" [ngClass]="{'form-show-errors': showErrors}" novalidate>
+        <fieldset formGroupName="pet">
+            <h4>Pet</h4>
+            <sf-form-field label="name" cols="2">
+                <input type="text" name="name" class="form-control form-control-sm" formControlName="name" [autofocus] />
+            </sf-form-field>
+
+            <sf-form-field label="type" cols="2">
+                <select name="type" class="form-control" formControlName="type">
+                    <option value=""></option>
+                    <option *ngFor="let enum of allEnums.type | sfEnum" [ngValue]="enum">{{enum | translate}}</option>
+                </select>
+            </sf-form-field>
+
+            <sf-form-field label="isFavorate" cols="3">
+                <label class="c-input c-radio">
+                    <input type="radio" class="radio" name="isFavorate" formControlName="isFavorate" [value]="true">
+                    <span class="c-indicator"></span>
+                    true
+                </label>
+                <label class="c-input c-radio">
+                    <input type="radio" class="radio" name="isFavorate" formControlName="isFavorate" [value]="false">  
+                    <span class="c-indicator"></span>
+                    false
+                </label>
+            </sf-form-field>
+
+            <fieldset formGroupName="address">
+                <h4>Pet.Address</h4>
+                <sf-form-field label="street" cols="6">
+                    <input type="text" name="street" class="form-control form-control-sm" formControlName="street" />
+                </sf-form-field>
+                <sf-form-field label="city" cols="6">
+                    <input type="text" name="city" class="form-control form-control-sm" formControlName="city" />
+                </sf-form-field>
+                <sf-form-field label="state" cols="2">
+                    <input type="text" name="state" class="form-control form-control-sm" formControlName="state" />
+                </sf-form-field>
+                <sf-form-field label="zipcode" cols="2">
+                    <input type="number" name="zipcode" class="form-control form-control-sm" formControlName="zipcode" />
+                </sf-form-field>
+                <sf-form-field label="zipcode2" cols="2">
+                    <input type="number" name="zipcode2" class="form-control form-control-sm" formControlName="zipcode2" />
+                    <custom-messages>
+                        <!-- custom cross field validation example -->
+                        <div *ngIf="showErrors && !matchingZipcodes.valid">
+                            <div class="error">De zipcodes zijn niet gelijk</div>
+                        </div>
+                    </custom-messages>
+                </sf-form-field>
+            </fieldset>
+
+            <fieldset formGroupName="vet">
+                <h4>Pet.Vet</h4>
+                <sf-form-field label="name" cols="6">
+                    <input type="text" name="name" class="form-control form-control-sm" formControlName="name" />
+                </sf-form-field>
+                <fieldset formGroupName="address">
+                    <h4>Pet.Vet.Address</h4>
+                    <sf-form-field label="street" cols="6">
+                        <input type="text" name="street" class="form-control form-control-sm" formControlName="street" />
+                    </sf-form-field>
+                    <sf-form-field label="city" cols="6">
+                        <input type="text" name="city" class="form-control form-control-sm" formControlName="city" />
+                    </sf-form-field>
+                    <sf-form-field label="state" cols="2">
+                        <input type="text" name="state" class="form-control form-control-sm" formControlName="state" />
+                    </sf-form-field>
+                    <sf-form-field label="zipcode" cols="2">
+                        <input type="number" name="zipcode" class="form-control form-control-sm" formControlName="zipcode" />
+                    </sf-form-field>
+                </fieldset>
+            </fieldset>
+
+            <h4>Pet.Tags</h4>
+            <fieldset formArrayName="tags">
+                <div *ngFor="let tagFormGroup of form.controls.pet.controls.tags.controls; let i=index">
+                    <fieldset [formGroupName]="i">
+                        <sf-form-field label="id" cols="2">
+                            <input type="number" name="id" class="form-control form-control-sm" formControlName="id" />
+                        </sf-form-field>
+                        <sf-form-field label="name" cols="6">
+                            <input type="text" name="id" class="form-control form-control-sm" formControlName="name" />
+                        </sf-form-field>
+                    </fieldset>
+                </div>
+            </fieldset>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary" title="Validate form">Validate</button>
+        <div *ngIf="showErrors" class="alert alert-danger" role="alert">Het formulier bevat validatie fouten</div>
+    </form>
+
+    <div class="col-sm-3 ">
+        <h4>form.value</h4>
+        <pre class="code">{{form.value | json}}</pre>
+        <h4>pet</h4>
+        <pre class="code">{{pet | json}}</pre>
+    </div>
+</div>

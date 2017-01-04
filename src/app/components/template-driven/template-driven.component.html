@@ -1,0 +1,179 @@
+<div class="row">
+    <form class="col-sm-9 form" role="form" #form="ngForm" (ngSubmit)="validateForm(form)" [ngClass]="{'form-show-errors': showErrors}" novalidate>
+        <fieldset ngModelGroup="pet">
+            <h4>Pet</h4>
+            <div class="form-group row">
+                <label class="control-label" class="col-sm-3">name</label>
+                <div class="col-sm-2">
+                    <input type="text" name="name" class="form-control form-control-sm" [(ngModel)]="pet.name" #name="ngModel" required minlength="4"
+                    />
+                    <div *ngIf="!name.valid && (showErrors || !name.pristine)" class="error">
+                        Name is required and must contain at least 4 characters
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label" class="col-sm-3">type</label>
+                <div class="col-sm-2">
+                    <select name="type" class="form-control" [(ngModel)]="pet.type" #type="ngModel" required>
+                        <option value=""></option>
+                        <option *ngFor="let type of types" [value]="type">{{type}}</option>
+                    </select>
+                    <div *ngIf="!type.valid && (showErrors || !type.pristine)" class="error">
+                        Type is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label" class="col-sm-3">isFavorate</label>
+                <div class="col-sm-4">
+                    <label class="c-input c-radio">
+                        <input type="radio" class="radio" name="isFavorate" [(ngModel)]="pet.isFavorate" [value]="true">
+                        <span class="c-indicator"></span>
+                        true
+                    </label>
+                    <label class="c-input c-radio">
+                        <input type="radio" class="radio" name="isFavorate" [(ngModel)]="pet.isFavorate" [value]="false">  
+                        <span class="c-indicator"></span>
+                        false
+                    </label>
+                    <!-- hidden control, only used for validation -->
+                    <input type="hidden" name="isFavorate" [(ngModel)]="pet.isFavorate">
+                </div>
+            </div>
+
+            <fieldset ngModelGroup="address">
+                <h4>Pet.Address</h4>
+                <div class="form-group row">
+                    <label class="control-label" class="col-sm-3">street</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="street" class="form-control form-control-sm" [(ngModel)]="pet.address.street" #street="ngModel"
+                            minlength="2" />
+                        <div *ngIf="!street.valid && (showErrors || !street.pristine)" class="error">
+                            Street must contain at leat 2 characters
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label" class="col-sm-3">city</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="city" class="form-control form-control-sm" [(ngModel)]="pet.address.city" #city="ngModel" minlength="2"
+                        />
+                        <div *ngIf="!city.valid && (showErrors || !city.pristine)" class="error">
+                            City must contain at leat 2 characters
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label" class="col-sm-3">state</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="state" class="form-control form-control-sm" [(ngModel)]="pet.address.state" #state="ngModel" minlength="1"
+                            maxlength="2" />
+                        <div *ngIf="!state.valid && (showErrors || !state.pristine)" class="error">
+                            State must contain at leat 1 and at must 2 characters
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label" class="col-sm-3">zipcode</label>
+                    <div class="col-sm-2">
+                        <input type="number" name="zipcode" class="form-control form-control-sm" [(ngModel)]="pet.address.zipcode" #zipcode="ngModel"
+                            minValueValidator="1000" maxValueValidator="9999" />
+                        <div *ngIf="!zipcode.valid && (showErrors || !zipcode.pristine)" class="error">
+                            Zipcode must be between 1000 and 9999
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset ngModelGroup="vet">
+                <h4>Pet.Vet</h4>
+                <div class="form-group row">
+                    <label class="control-label" class="col-sm-3">name</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="name" class="form-control form-control-sm" [(ngModel)]="pet.vet.name" #vetname="ngModel" required
+                            minlength="1" />
+                        <div *ngIf="!vetname.valid && (showErrors || !vetname.pristine)" class="error">
+                            Name is required and must contain at least 1 character
+                        </div>
+                    </div>
+                </div>
+
+                <fieldset ngModelGroup="address">
+                    <h4>Pet.Vet.Address</h4>
+                    <div class="form-group row">
+                        <label class="control-label" class="col-sm-3">street</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="street" class="form-control form-control-sm" [(ngModel)]="pet.vet.address.street" #vetstreet="ngModel"
+                                minlength="2" />
+                            <div *ngIf="!vetstreet.valid && (showErrors || !vetstreet.pristine)" class="error">
+                                Street must contain at leat 2 characters
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label" class="col-sm-3">city</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="city" class="form-control form-control-sm" [(ngModel)]="pet.vet.address.city" #vetcity="ngModel"
+                                minlength="2" />
+                            <div *ngIf="!vetcity.valid && (showErrors || !vetcity.pristine)" class="error">
+                                City must contain at leat 2 characters
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label" class="col-sm-3">state</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="state" class="form-control form-control-sm" [(ngModel)]="pet.vet.address.state" #vetstate="ngModel"
+                                minlength="1" maxlength="2" />
+                            <div *ngIf="!vetstate.valid && (showErrors || !vetstate.pristine)" class="error">
+                                State must contain at leat 1 and at must 2 characters
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label" class="col-sm-3">zipcode</label>
+                        <div class="col-sm-2">
+                            <input type="number" name="zipcode" class="form-control form-control-sm" [(ngModel)]="pet.vet.address.zipcode" #vetzipcode="ngModel"
+                                minValueValidator="1000" maxValueValidator="9999" />
+                            <div *ngIf="!vetzipcode.valid && (showErrors || !vetzipcode.pristine)" class="error">
+                                Zipcode must be between 1000 and 9999
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </fieldset>
+
+            <h4>Pet.Tags</h4>
+            <div *ngFor="let tag of pet.tags; let i = index">
+                <fieldset ngModelGroup="tag-{{tag.id}}">
+                    <div class="form-group row">
+                        <label class="control-label" class="col-sm-3">id</label>
+                        <div class="col-sm-2">
+                            <input type="number" name="id" class="form-control form-control-sm" [(ngModel)]="tag.id" #id1="ngModel" required />
+                            <div *ngIf="!id1.valid && (showErrors || !id1.pristine)" class="error">
+                                Id is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label" class="col-sm-3">name</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="name" class="form-control form-control-sm" [(ngModel)]="tag.name" />
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary" title="Validate form">Validate</button>
+        <div *ngIf="showErrors" class="alert alert-danger" role="alert">Het formulier bevat validatie fouten</div>
+    </form>
+
+    <div class="col-sm-3 ">
+        <h4>pet</h4>
+        <pre class="code">{{pet | json}}</pre>
+    </div>
+</div>

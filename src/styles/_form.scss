@@ -1,0 +1,24 @@
+form.form-show-errors {
+    //.ng-valid, 
+    input.ng-valid, 
+    textarea.ng-valid, 
+    select.ng-valid {
+        border-left: 5px solid #42A948;
+    }
+
+    //.ng-invalid, 
+    input.ng-invalid, 
+    textarea.ng-invalid, 
+    select.ng-invalid {
+        border-left: 5px solid #a94442;
+    }
+}
+//.ng-invalid.ng-touched, 
+input.ng-invalid.ng-touched, 
+textarea.ng-invalid.ng-touched, 
+select.ng-invalid.ng-touched {
+    border-left: 5px solid #a94442;
+}
+.error {
+    color: red;
+}

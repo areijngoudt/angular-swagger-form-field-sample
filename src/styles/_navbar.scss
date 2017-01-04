@@ -1,0 +1,34 @@
+@import "_vars";
+
+.navbar-container {
+    min-height: $navbar-button-height;
+    nav.navbar {
+        margin-bottom: 0;
+        border: 0;
+        padding: 10px 0 10px 0;
+        ul {
+            width: 100%;
+            min-height: $navbar-button-height;
+
+            li.nav-item {
+                a {
+                    &:hover {
+                        color: black;
+                    }
+                    &.active {
+                        font-weight: bold;
+                        font-size: 110%;
+                        border-bottom: 3px solid $blockchain-blue;
+                    }
+                }
+                &.disabled {
+                    cursor: not-allowed;
+                    a.disabled {
+                        pointer-events: none;
+                    } 
+                }
+            }
+        }
+    }
+
+}
