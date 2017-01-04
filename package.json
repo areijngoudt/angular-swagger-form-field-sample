@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ng serve --port 3000",
     "build": "ng build -prod --sourcemap=false",
+    "readme.md-to-home.html": "github-markdown README.md > src/app/components/home/home.component.html",
     "deploy": "ng github-pages:deploy"
   },
   "keywords": [

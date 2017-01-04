@@ -1,3 +1,37 @@
-<div class="home">
-    <mark>TODO describe this project</mark>
-</div>
+<h1>
+<a id="user-content-angular2-swagger-form-field-sample" class="anchor" href="#angular2-swagger-form-field-sample" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>angular2-swagger-form-field-sample</h1>
+
+<p>Angular 2 (and above) sample project which shows how to use the <a href="https://www.npmjs.com/package/swagger-ts-generator">swagger-ts-generator</a> and 
+<a href="https://github.com/areijngoudt/angular2-swagger-form-field">angular2-swagger-form-field modules</a>. </p>
+
+<p>It implements functionality to use the generated classes for building form fields with validation. 
+See <a href="https://areijngoudt.github.io/angular2-swagger-form-field-sample/home">sample</a> for a running sample of this repo.</p>
+
+<h1>
+<a id="user-content-samples" class="anchor" href="#samples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Samples</h1>
+
+<h2>
+<a id="user-content-template-driven" class="anchor" href="#template-driven" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Template driven</h2>
+
+<p>In the sample <code>src/app/components/template-driven</code> a traditional template driven form is implemented.
+It's just for reference so you can see what it takes to implement a form in the view. </p>
+
+<p>Notice the verbosity and the repetetion of the validation stuff in the <code>template-driven.component.html</code> view.</p>
+
+<h2>
+<a id="user-content-model-driven" class="anchor" href="#model-driven" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Model driven</h2>
+
+<p>In the sample <code>src/app/components/model-driven</code>a reactive form is implemented without generated classes. 
+The form groups are implemented in the <code>model-driven.component.ts</code>.</p>
+
+<p>Notice that the view <code>model-driven.component.html</code> is less verbose than that of the template driven form.</p>
+
+<h2>
+<a id="user-content-generated-model-driven" class="anchor" href="#generated-model-driven" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Generated model driven</h2>
+
+<p>In the sample <code>src/app/components/generated-model-driven</code>a reactive form is implemented with form groups from the generated classes. 
+The view is simular to that of the model driven component.</p>
+
+<p>Notice that the component <code>generated-model-driven.component.ts</code> does not conain the form groups and validation rules. 
+These are all generated using the <a href="https://www.npmjs.com/package/swagger-ts-generator">swagger-ts-generator</a>.</p>
+
