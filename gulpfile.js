@@ -5,7 +5,7 @@ var gulp = require('gulp');
 
 var $ = require('gulp-load-plugins')({ lazy: true });
 var args = require('yargs').argv;
-var swaggerTSGenerator = require('./lib/swagger-ts-generator');
+var swaggerTSGenerator = require('./node_modules/swagger-ts-generator');
 var request = require('request');
 var source = require('vinyl-source-stream');
 

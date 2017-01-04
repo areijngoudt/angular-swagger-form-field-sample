@@ -27,7 +27,7 @@ export class PetService implements IPetService {
                 type: type.cat,
                 gender: gender.male,
                 address: {
-                    city: 'Heythuizen',
+                    city: 'Almere',
                     state: 'L',
                     street: 'Sint Janlaan 19',
                     zipcode: 9999,

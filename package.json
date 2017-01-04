@@ -5,7 +5,8 @@
   "main": "src/index.html",
   "scripts": {
     "start": "ng serve --port 3000",
-    "build": "ng build -prod --sourcemap=false"
+    "build": "ng build -prod --sourcemap=false",
+    "deploy": "ng github-pages:deploy"
   },
   "keywords": [
     "Swagger",
@@ -36,6 +37,7 @@
     "@angular/platform-browser-dynamic": "2.4.1",
     "@angular/router": "3.4.1",
     "angular2-notifications": "^0.4.48",
+    "angular2-swagger-form-field": "^1.1.8",
     "bootstrap": "^4.0.0-alpha.2",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
@@ -78,6 +80,7 @@
     "protractor": "4.0.11",
     "request": "^2.72.0",
     "run-sequence": "^1.1.5",
+    "swagger-ts-generator": "^1.1.2",
     "ts-node": "1.7.2",
     "tslint": "4.1.1",
     "typescript": "2.0.10",
