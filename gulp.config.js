@@ -41,6 +41,7 @@ function config() {
 
     var config = {
         root: root,
+        files: files,
         swagger: swagger,
     }
     return config;
