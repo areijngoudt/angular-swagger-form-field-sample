@@ -5,7 +5,7 @@
 /* tslint:disable */
 
 import { Validators, FormControl, FormGroup, FormArray, ValidatorFn } from '@angular/forms';
-import { minValueValidator, maxValueValidator } from './validators';
+import { minValueValidator, maxValueValidator, enumValidator } from './validators';
 import { BaseModel } from './base-model';
 
 
@@ -36,9 +36,11 @@ export class NullableOrEmpty<T> extends BaseModel implements INullableOrEmpty<T>
      * @param values Can be used to set a webapi response to this newly constructed model
     */
     setValues(values: any): void {
-        this.hasValue = values.hasValue;
-        this.value = values.value;
-        this.isEmpty = values.isEmpty;
+        if (values) {
+            this.hasValue = values.hasValue;
+            this.value = values.value;
+            this.isEmpty = values.isEmpty;
+        }
     }
 
     protected getFormGroup(): FormGroup {
@@ -48,9 +50,15 @@ export class NullableOrEmpty<T> extends BaseModel implements INullableOrEmpty<T>
                 value: new FormControl(this.value),
                 isEmpty: new FormControl(this.isEmpty),
             });
-
-            // generate FormArray control elements
         }
         return this._formGroup;
+    }
+
+    setFormGroupValues() {
+        if (this._formGroup) {
+            this._formGroup.controls['hasValue'].setValue(this.hasValue);
+            this._formGroup.controls['value'].setValue(this.value);
+            this._formGroup.controls['isEmpty'].setValue(this.isEmpty);
+        }
     }
 }

@@ -5,7 +5,7 @@
 /* tslint:disable */
 
 import { Validators, FormControl, FormGroup, FormArray, ValidatorFn } from '@angular/forms';
-import { minValueValidator, maxValueValidator } from './validators';
+import { minValueValidator, maxValueValidator, enumValidator } from './validators';
 import { BaseModel } from './base-model';
 
 import { Address } from './address.model';
@@ -36,8 +36,10 @@ export class Veterinarian extends BaseModel implements IVeterinarian {
      * @param values Can be used to set a webapi response to this newly constructed model
     */
     setValues(values: any): void {
-        this.name = values.name;
-        this.address.setValues(values.address);
+        if (values) {
+            this.name = values.name;
+            this.address.setValues(values.address);
+        }
     }
 
     protected getFormGroup(): FormGroup {
@@ -46,9 +48,14 @@ export class Veterinarian extends BaseModel implements IVeterinarian {
                 name: new FormControl(this.name, [Validators.required, Validators.minLength(1), ]),
                 address: this.address.$formGroup,
             });
-
-            // generate FormArray control elements
         }
         return this._formGroup;
+    }
+
+    setFormGroupValues() {
+        if (this._formGroup) {
+            this._formGroup.controls['name'].setValue(this.name);
+            this.address.setFormGroupValues();
+        }
     }
 }

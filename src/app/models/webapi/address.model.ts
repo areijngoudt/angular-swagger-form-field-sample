@@ -5,7 +5,7 @@
 /* tslint:disable */
 
 import { Validators, FormControl, FormGroup, FormArray, ValidatorFn } from '@angular/forms';
-import { minValueValidator, maxValueValidator } from './validators';
+import { minValueValidator, maxValueValidator, enumValidator } from './validators';
 import { BaseModel } from './base-model';
 
 
@@ -40,11 +40,13 @@ export class Address extends BaseModel implements IAddress {
      * @param values Can be used to set a webapi response to this newly constructed model
     */
     setValues(values: any): void {
-        this.street = values.street;
-        this.city = values.city;
-        this.state = values.state;
-        this.zipcode = values.zipcode;
-        this.zipcode2 = values.zipcode2;
+        if (values) {
+            this.street = values.street;
+            this.city = values.city;
+            this.state = values.state;
+            this.zipcode = values.zipcode;
+            this.zipcode2 = values.zipcode2;
+        }
     }
 
     protected getFormGroup(): FormGroup {
@@ -56,9 +58,17 @@ export class Address extends BaseModel implements IAddress {
                 zipcode: new FormControl(this.zipcode, [minValueValidator(1000), maxValueValidator(9999), ]),
                 zipcode2: new FormControl(this.zipcode2, [minValueValidator(1000), maxValueValidator(9999), ]),
             });
-
-            // generate FormArray control elements
         }
         return this._formGroup;
+    }
+
+    setFormGroupValues() {
+        if (this._formGroup) {
+            this._formGroup.controls['street'].setValue(this.street);
+            this._formGroup.controls['city'].setValue(this.city);
+            this._formGroup.controls['state'].setValue(this.state);
+            this._formGroup.controls['zipcode'].setValue(this.zipcode);
+            this._formGroup.controls['zipcode2'].setValue(this.zipcode2);
+        }
     }
 }

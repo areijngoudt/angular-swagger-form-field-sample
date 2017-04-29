@@ -1,5 +1,6 @@
 <div class="row">
-    <form class="col-sm-9 form" role="form" [formGroup]="form" (ngSubmit)="validateForm(form)" [ngClass]="{'form-show-errors': showErrors}" novalidate>
+    <form class="col-sm-9 form" role="form" [formGroup]="form" (ngSubmit)="validateForm(form)" [ngClass]="{'form-show-errors': showErrors}"
+        novalidate>
         <fieldset formGroupName="pet">
             <h4>Pet</h4>
             <sf-form-field label="name" cols="2">
@@ -12,6 +13,12 @@
                     <option *ngFor="let enum of allEnums.type | sfEnum" [ngValue]="enum">{{enum | translate}}</option>
                 </select>
             </sf-form-field>
+
+            <!-- alternative for type to test the enum validator -->
+            <!--<sf-form-field label="type2" cols="2">
+                <input type="text" name="type2" class="form-control form-control-sm" formControlName="type" value="{{pet.type | translate}}"
+                />
+            </sf-form-field>-->
 
             <sf-form-field label="isFavorate" cols="3">
                 <label class="c-input c-radio">

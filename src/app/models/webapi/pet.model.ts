@@ -5,7 +5,7 @@
 /* tslint:disable */
 
 import { Validators, FormControl, FormGroup, FormArray, ValidatorFn } from '@angular/forms';
-import { minValueValidator, maxValueValidator } from './validators';
+import { minValueValidator, maxValueValidator, enumValidator } from './validators';
 import { BaseModel } from './base-model';
 
 import { type } from './enums';
@@ -63,17 +63,19 @@ export class Pet extends BaseModel implements IPet {
      * @param values Can be used to set a webapi response to this newly constructed model
     */
     setValues(values: any): void {
-        this.name = values.name;
-        this.age = values.age;
-        this.dob = values.dob;
-        this.type = values.type;
-        this.gender = values.gender;
-        this.address.setValues(values.address);
-        this.vet.setValues(values.vet);
-        this.fillModelArray<Tag>(this, 'tags', values.tags, Tag);
-        this.isFavorate = values.isFavorate;
-        this.testDate.setValues(values.testDate);
-        this.fillModelArray<string>(this, 'primitiveArray', values.primitiveArray);
+        if (values) {
+            this.name = values.name;
+            this.age = values.age;
+            this.dob = values.dob;
+            this.type = values.type;
+            this.gender = values.gender;
+            this.address.setValues(values.address);
+            this.vet.setValues(values.vet);
+            this.fillModelArray<Tag>(this, 'tags', values.tags, Tag);
+            this.isFavorate = values.isFavorate;
+            this.testDate.setValues(values.testDate);
+            this.fillModelArray<string>(this, 'primitiveArray', values.primitiveArray);
+        }
     }
 
     protected getFormGroup(): FormGroup {
@@ -82,8 +84,8 @@ export class Pet extends BaseModel implements IPet {
                 name: new FormControl(this.name, [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z0-9- ]+$'), ]),
                 age: new FormControl(this.age),
                 dob: new FormControl(this.dob),
-                type: new FormControl(this.type, [Validators.required, ]),
-                gender: new FormControl(this.gender),
+                type: new FormControl(this.type, [Validators.required, enumValidator(type), ]),
+                gender: new FormControl(this.gender, [enumValidator(gender), ]),
                 address: this.address.$formGroup,
                 vet: this.vet.$formGroup,
                 tags: new FormArray([]),
@@ -91,11 +93,27 @@ export class Pet extends BaseModel implements IPet {
                 testDate: this.testDate.$formGroup,
                 primitiveArray: new FormArray([]),
             });
-
             // generate FormArray control elements
             this.fillFormArray<Tag>('tags', this.tags, Tag);
+            // generate FormArray control elements
             this.fillFormArray<string>('primitiveArray', this.primitiveArray);
         }
         return this._formGroup;
+    }
+
+    setFormGroupValues() {
+        if (this._formGroup) {
+            this._formGroup.controls['name'].setValue(this.name);
+            this._formGroup.controls['age'].setValue(this.age);
+            this._formGroup.controls['dob'].setValue(this.dob);
+            this._formGroup.controls['type'].setValue(this.type);
+            this._formGroup.controls['gender'].setValue(this.gender);
+            this.address.setFormGroupValues();
+            this.vet.setFormGroupValues();
+            this.fillModelArray<Tag>(this, 'tags', this.tags, Tag);
+            this._formGroup.controls['isFavorate'].setValue(this.isFavorate);
+            this.testDate.setFormGroupValues();
+            this.fillModelArray<string>(this, 'primitiveArray', this.primitiveArray);
+        }
     }
 }

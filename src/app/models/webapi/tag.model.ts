@@ -5,7 +5,7 @@
 /* tslint:disable */
 
 import { Validators, FormControl, FormGroup, FormArray, ValidatorFn } from '@angular/forms';
-import { minValueValidator, maxValueValidator } from './validators';
+import { minValueValidator, maxValueValidator, enumValidator } from './validators';
 import { BaseModel } from './base-model';
 
 
@@ -34,8 +34,10 @@ export class Tag extends BaseModel implements ITag {
      * @param values Can be used to set a webapi response to this newly constructed model
     */
     setValues(values: any): void {
-        this.id = values.id;
-        this.name = values.name;
+        if (values) {
+            this.id = values.id;
+            this.name = values.name;
+        }
     }
 
     protected getFormGroup(): FormGroup {
@@ -44,9 +46,14 @@ export class Tag extends BaseModel implements ITag {
                 id: new FormControl(this.id, [Validators.required, ]),
                 name: new FormControl(this.name),
             });
-
-            // generate FormArray control elements
         }
         return this._formGroup;
+    }
+
+    setFormGroupValues() {
+        if (this._formGroup) {
+            this._formGroup.controls['id'].setValue(this.id);
+            this._formGroup.controls['name'].setValue(this.name);
+        }
     }
 }

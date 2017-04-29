@@ -5,7 +5,7 @@
 /* tslint:disable */
 
 import { Validators, FormControl, FormGroup, FormArray, ValidatorFn } from '@angular/forms';
-import { minValueValidator, maxValueValidator } from './validators';
+import { minValueValidator, maxValueValidator, enumValidator } from './validators';
 import { BaseModel } from './base-model';
 
 import { hairColor } from './enums';
@@ -53,15 +53,17 @@ export class Model extends BaseModel implements IModel {
      * @param values Can be used to set a webapi response to this newly constructed model
     */
     setValues(values: any): void {
-        this.name = values.name;
-        this.email = values.email;
-        this.age = values.age;
-        this.balance = values.balance;
-        this.dob = values.dob;
-        this.hairColor = values.hairColor;
-        this.fillModelArray<number>(this, 'integers', values.integers);
-        this.fillModelArray<number>(this, 'doubles', values.doubles);
-        this.fillModelArray<SubModel>(this, 'subModels', values.subModels, SubModel);
+        if (values) {
+            this.name = values.name;
+            this.email = values.email;
+            this.age = values.age;
+            this.balance = values.balance;
+            this.dob = values.dob;
+            this.hairColor = values.hairColor;
+            this.fillModelArray<number>(this, 'integers', values.integers);
+            this.fillModelArray<number>(this, 'doubles', values.doubles);
+            this.fillModelArray<SubModel>(this, 'subModels', values.subModels, SubModel);
+        }
     }
 
     protected getFormGroup(): FormGroup {
@@ -72,17 +74,32 @@ export class Model extends BaseModel implements IModel {
                 age: new FormControl(this.age, [Validators.required, maxValueValidator(120), ]),
                 balance: new FormControl(this.balance, [minValueValidator(-100), maxValueValidator(200), ]),
                 dob: new FormControl(this.dob),
-                hairColor: new FormControl(this.hairColor),
+                hairColor: new FormControl(this.hairColor, [enumValidator(hairColor), ]),
                 integers: new FormArray([]),
                 doubles: new FormArray([]),
                 subModels: new FormArray([]),
             });
-
             // generate FormArray control elements
             this.fillFormArray<number>('integers', this.integers);
+            // generate FormArray control elements
             this.fillFormArray<number>('doubles', this.doubles);
+            // generate FormArray control elements
             this.fillFormArray<SubModel>('subModels', this.subModels, SubModel);
         }
         return this._formGroup;
+    }
+
+    setFormGroupValues() {
+        if (this._formGroup) {
+            this._formGroup.controls['name'].setValue(this.name);
+            this._formGroup.controls['email'].setValue(this.email);
+            this._formGroup.controls['age'].setValue(this.age);
+            this._formGroup.controls['balance'].setValue(this.balance);
+            this._formGroup.controls['dob'].setValue(this.dob);
+            this._formGroup.controls['hairColor'].setValue(this.hairColor);
+            this.fillModelArray<number>(this, 'integers', this.integers);
+            this.fillModelArray<number>(this, 'doubles', this.doubles);
+            this.fillModelArray<SubModel>(this, 'subModels', this.subModels, SubModel);
+        }
     }
 }
