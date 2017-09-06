@@ -1,7 +1,7 @@
 import {QueryList} from '@angular/core';
 import {NgModel, FormControlName, FormControl} from '@angular/forms';
 
-import * as _ from 'lodash';
+import { uniqBy } from 'lodash';
 
 /**
  * The FormControlFinder tries to find a formControl in the given ngModelChildren.
@@ -33,7 +33,7 @@ export class FormControlFinder {
      * @returns {boolean} true if all items in array are the same, throws error if not
      */
     private static checkArrayContainsSameNameValues(array: any[]): boolean {
-        let uniq = _.uniqBy(array, 'name');
+        let uniq = uniqBy(array, 'name');
         if (uniq.length > 1) {
             console.log('More than one ngModel found in transclude childs. first=', uniq[0], ' second=', uniq[1]);
             throw `More than one ngModel found in transclude childs (first=${uniq[0]}, other=${uniq[1]}`;

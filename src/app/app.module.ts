@@ -1,16 +1,18 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 //import { Component, NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { HttpModule, Http } from '@angular/http';
-import { NotificationsService, SimpleNotificationsModule } from 'angular2-notifications/components';
-import { TranslateModule, TranslateService, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
-import { SwaggerFormFieldModule } from 'angular-swagger-form-field/components';
+import { SwaggerFormFieldModule } from 'angular-swagger-form-field';
 
 //import 'moment';
 //import 'moment-nl';
-//import 'lodash';
 
 import { AppConfig } from './app.config';
 import { routing } from './app.routing';
@@ -25,8 +27,12 @@ import { SharedModule } from './shared';
 
 import { PetService } from './components/shared/pet.service';
 
-export function createTranslateStaticLoader(http: Http): TranslateLoader {
-  return new TranslateStaticLoader(http, '/assets/i18n', '.json');
+// AoT requires an exported function for factories
+// export function HttpLoaderFactory(http: Http) {
+//   return new TranslateHttpLoader(http);
+// }
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -42,11 +48,14 @@ export function createTranslateStaticLoader(http: Http): TranslateLoader {
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    SimpleNotificationsModule,
+    HttpClientModule,
+    SimpleNotificationsModule.forRoot(),
     TranslateModule.forRoot({
-      provide: TranslateLoader,
-      useFactory: createTranslateStaticLoader,
-      deps: [Http]
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
     }),
     routing,
     SwaggerFormFieldModule,
@@ -54,8 +63,7 @@ export function createTranslateStaticLoader(http: Http): TranslateLoader {
   ],
   providers: [
     FormBuilder,
-    NotificationsService,
-    TranslateService,
+    HttpClient,
     AppConfig,
     PetService,
   ],

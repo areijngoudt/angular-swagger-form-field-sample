@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import * as moment from 'moment';
-import * as _ from 'lodash';
 
 import { PetViewModel } from '../../models/pet.viewmodel';
 import { IPet, Pet, ITag, Tag, type, gender, NullableOrEmpty } from '../../models/webapi/index';

@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import { isUndefined } from 'lodash';
 
 export interface IRepository {
     has(key: string): boolean;
@@ -20,7 +20,7 @@ export class Repository implements IRepository {
      * @returns {boolean} true if repository contains an entry with key, false if not
      */
     has(key: string): boolean {
-        return !(_.isUndefined(this.get(key)));
+        return !(isUndefined(this.get(key)));
     }
 
     /**
@@ -30,7 +30,7 @@ export class Repository implements IRepository {
      */
     get<T>(key: string): T {
         let value = this.repository[key];
-        //if (!_.isUndefined(key)) { console.log('get', key); }
+        //if (!isUndefined(key)) { console.log('get', key); }
         return value;
     }
 
