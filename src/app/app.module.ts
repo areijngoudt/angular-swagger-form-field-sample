@@ -9,7 +9,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
-import { SwaggerFormFieldModule } from 'angular-swagger-form-field';
+import { SwaggerFormFieldModule } from 'angular-swagger-form-field/components';
 
 //import 'moment';
 //import 'moment-nl';

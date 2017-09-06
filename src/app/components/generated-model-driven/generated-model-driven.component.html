@@ -82,7 +82,7 @@
 
             <h4>Pet.Tags</h4>
             <fieldset formArrayName="tags">
-                <div *ngFor="let tagFormGroup of form.controls.pet.controls.tags.controls; let i=index">
+                <div *ngFor="let tagFormGroup of form.get('pet').get('tags').get('controls'); let i=index">
                     <fieldset [formGroupName]="i">
                         <sf-form-field label="id" cols="2">
                             <input type="number" name="id" class="form-control form-control-sm" formControlName="id" />

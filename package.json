@@ -7,7 +7,7 @@
     "start": "ng serve --port 3009",
     "build": "ng build -prod --sourcemap=false",
     "readme.md-to-home.html": "github-markdown README.md > src/app/components/home/home.component.html",
-    "deploy": "ng github-pages:deploy"
+    "deploy": "npm run build && angular-cli-ghpages"
   },
   "keywords": [
     "Swagger",
@@ -16,6 +16,8 @@
     "Angular",
     "Angular2",
     "Angular 2",
+    "Angular4",
+    "Angular 4",
     "model-driven forms",
     "reactive forms"
   ],
@@ -41,7 +43,7 @@
     "@angular/router": "^4.3.3",
     "@ngx-translate/core": "^7.1.0",
     "@ngx-translate/http-loader": "^1.0.2",
-    "angular-swagger-form-field": "^1.2.6",
+    "angular-swagger-form-field": "^1.2.7",
     "angular2-notifications": "^0.7.7",
     "bootstrap": "^4.0.0-alpha.2",
     "core-js": "^2.5.0",

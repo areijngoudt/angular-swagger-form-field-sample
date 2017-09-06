@@ -272,9 +272,9 @@ amdefine@1.0.0, amdefine@>=0.0.4:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.0.tgz#fd17474700cb5cc9c2b709f0be9d23ce3c198c33"
 
-angular-swagger-form-field@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/angular-swagger-form-field/-/angular-swagger-form-field-1.2.6.tgz#e611ebf01d37a7bbf2112e3d07abd8b2c22cc29c"
+angular-swagger-form-field@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/angular-swagger-form-field/-/angular-swagger-form-field-1.2.7.tgz#4ddf2fda577b279d35cc75e2d78546bb80677d8d"
   dependencies:
     "@angular/common" "^4.3.3"
     "@angular/compiler" "^4.3.3"
