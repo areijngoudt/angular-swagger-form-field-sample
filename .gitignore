@@ -1,5 +1,0 @@
-node_modules
-NULL.log
-.DS_Store
-dist
-src/swagger/swagger-zib*.json
