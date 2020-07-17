@@ -80,7 +80,7 @@
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.1.0",
     "karma-remap-istanbul": "^0.2.1",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.19",
     "merge2": "^0.3.7",
     "protractor": "~5.1.0",
     "request": "^2.72.0",
